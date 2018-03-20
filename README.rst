@@ -2,8 +2,8 @@
 Cologne-phonetics
 =================
 
-Cologne-phonetics is a phonetic algorithm similar to Soundex, developed by Hans Postel.
-Contrary to Soundex, it's designed specific for the german language.
+Cologne-phonetics is a phonetic algorithm similar to Soundex, wich encodes words into a phonetic code, making it possible to compare how they *sound* rather than how they're *written*.
+It was developed by Hans Postel and contrary to Soundex, it's designed specific for the german language.
 
 It involves three steps:
 
