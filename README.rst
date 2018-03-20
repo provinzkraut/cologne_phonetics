@@ -1,3 +1,6 @@
+.. _unstable: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/master/cologne_phonetics.py
+.. _stable: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/1.0.2/cologne_phonetics.py
+
 =================
 Cologne-phonetics
 =================
@@ -18,12 +21,13 @@ convinience wrapper `encode_many()` and a simple command line interface.
 Install
 ========
 
-cologne_phonetics is available on PyPi. So to install simply do:
+cologne_phonetics is available on PyPi for Python 3.4+. So it can be installed it via pip:
 
 .. code-block:: bash
 
   pip install cologne_phonetics
 
+Alternively, cou can download the latest unstable_ or release_ directly.
 
 =========
 Usage
