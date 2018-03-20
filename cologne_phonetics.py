@@ -11,7 +11,7 @@ https://en.wikipedia.org/wiki/Cologne_phonetics
 """
 
 __author__ = "Janek Nouvertné"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 __license__ = "MIT"
 
 import sys
@@ -149,7 +149,7 @@ if __name__ == "__main__":
                         help="Treat words connected by hyphens as seperate words")
     args = parser.parse_args()
     if " " in args.data:
-        res = encode_many(args.data.split(" "), concatenate=args.concat)
+        res = encode_many(args.data.split(" "), concat=args.concat)
     else:
-        res = encode(args.data, concatenate=args.concat)
+        res = encode(args.data, concat=args.concat)
     print(res)
