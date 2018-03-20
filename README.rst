@@ -11,8 +11,8 @@ It involves three steps:
 - Remove double digits
 - Remove every occurence of '0', except as a leading digit
 
-The module itself is quite simple and consists only of the `encode()` function, it's
-convinience wrapper `encode_many()` and a simple command line interface.
+The module itself is quite simple and consists only of the ``encode()`` function, it's
+convinience wrapper ``encode_many()`` and a simple command line interface.
 
 
 =========
