@@ -106,7 +106,6 @@ class TestColognePhonetics(unittest.TestCase):
             "ß": "s",
             "ç": "c"
         }
-
         for char, repl in special_chars.items():
             self.assertEqual(encode(char), encode(repl))
 
@@ -114,13 +113,10 @@ class TestColognePhonetics(unittest.TestCase):
         self.assertEqual(encode("ah"), encode("ahø"))
 
     def test_concatenation(self):
-        self.assertEqual(encode("a-a"), "0")
-        res = encode("a a")
-        self.assertIsInstance(res, list)
-        self.assertTrue(res[0]==res[1]=="0")
-        res = encode("a-a", concatenate=False)
-        self.assertIsInstance(res, list)
-        self.assertTrue(res[0]==res[1]=="0")
+        self.assertEqual(encode("a-a"), ["0", "0"])
+        self.assertEqual(encode("a a"), ["0", "0"])
+        self.assertEqual(encode("a-a", concat=True), "0")
+        self.assertEqual(encode("a a", concat=True), ["0", "0"])
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@ https://en.wikipedia.org/wiki/Cologne_phonetics
 """
 
 __author__ = "Janek Nouvertné"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __license__ = "MIT"
 
 import sys
@@ -77,7 +77,7 @@ RGX_RULES = [
     ]
 
 
-def encode(data, concatenate=True):
+def encode(data, concat=False):
     """
     :param data str: Input to be encoded. Every whitespace character will be\
     interpreted as a wordbreak.
@@ -108,7 +108,7 @@ def encode(data, concatenate=True):
         return s
 
 
-    if not concatenate:
+    if not concat:
         data = data.replace("-", " ")
     if " " in data:
         data = data.split(" ")
@@ -123,7 +123,7 @@ def encode(data, concatenate=True):
     return result
 
 
-def encode_many(data, **kwargs):
+def encode_many(data, concat=True):
     """
     Encode a list of strings
 
@@ -135,7 +135,7 @@ def encode_many(data, **kwargs):
 
     result = []
     for s in data:
-        result.append(encode(s, **kwargs))
+        result.append(encode(s, concat=concat))
     return result
 
 
@@ -144,12 +144,12 @@ if __name__ == "__main__":
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("data",
                         help="String to be encoded")
-    parser.add_argument("-nc", "--no_concat",
-                        action="store_false",
+    parser.add_argument("-nc", "--concat",
+                        action="store_true",
                         help="Treat words connected by hyphens as seperate words")
     args = parser.parse_args()
     if " " in args.data:
-        res = encode_many(args.data.split(" "), concatenate=args.no_concat)
+        res = encode_many(args.data.split(" "), concatenate=args.concat)
     else:
-        res = encode(args.data, concatenate=args.no_concat)
+        res = encode(args.data, concatenate=args.concat)
     print(res)
