@@ -1,8 +1,6 @@
 .. _unstable: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/master/cologne_phonetics.py
 .. _release: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/1.0.2/cologne_phonetics.py
 
-
-
 =================
 Cologne-phonetics
 =================
@@ -16,12 +14,36 @@ It involves three steps:
 - Remove double digits
 - Remove every occurence of '0', except as a leading digit
 
-The module itself is quite simple and consists only of the `encode()` function, it's
-convinience wrapper `encode_many()` and a simple command line interface.
+The module itself is quite simple and consists only of the ``encode()`` function, it's
+convinience wrapper ``encode_many()``` and a simple command line interface.
 
-========
-Install
-========
+
+A few examples
+============================
+
+.. code-block:: bash
+
+  $ cologne_phonetics.py "peter pédter"
+  ['127', '127']
+  $ cologne_phonetics.py "umwelt umhwält"
+  ['06352', '06352']
+  $ cologne_phonetics.py "urlaub uhrlaup"
+  ['0751', '0751']
+
+As you can see, similar sounding names produce the same result, with respect to the *right* pronunciation.
+
+.. code-block:: bash
+
+  $ cologne_phonetics.py "peter peta"
+  ['127', '12']
+
+As you can see, this does not give the same result for each name because it may seem similar,
+but (when pronounced correctly) don't really *sound* the same.
+
+
+=============
+Installation
+=============
 
 cologne_phonetics is available on PyPi for Python 3.4+. So it can be installed it via pip:
 
@@ -30,6 +52,7 @@ cologne_phonetics is available on PyPi for Python 3.4+. So it can be installed i
   pip install cologne_phonetics
 
 Alternively, cou can download the latest unstable_ or release_ directly.
+
 
 =========
 Usage
@@ -67,17 +90,17 @@ Command line interface
 Special characters
 ===================
 
+Special characters are all characters that are not ascii-characters between A and Z.
 Most special characters are simply ignored, but even within the set of special characters,
 there are some that are even *more* special.
-Special characters are all characters that are not ascii-characters between A and Z.
 
 
 Word breaks and hyphens
 ========================
 
-By default, words connected by hyphens, e.g. ``meier-lüdenscheid``, are treated
-as a single word. So ``meier-lüdenscheid`` would become ``6752682``. If you
-want it to be treated as two seperate words, you can pass a ``concat=False``
+By default, words connected by hyphens, e.g. ``meier-lüdenscheid`` are seperated.
+So ``meier-lüdenscheid`` would become ``['67', '52682']``. If you
+want it to be treated as a single word, you can pass a ``concat=True``
 to the encode functions. In this case, a list with the seperated, encoded words
 will be returned.
 
@@ -88,18 +111,18 @@ into a list of strings, in some cases it can make a difference.
 
   >>> cologne_phonetics.encode("weiss-chemie")
   >>> ['38', '46']
-  >>> cologne_phonetics.encode("weiss-chemie", concat=False)
+  >>> cologne_phonetics.encode("weiss-chemie", concat=True)
   >>> '386'
 
 As you can see, a ``4`` got lost here.
-In the case that you *really* want to compare the connected words you may use this option,
+In case you *really* want to compare the concatenated words you may use this option,
 but in general there's not much use to it.
 
 
 Umlaut and special character replacement
 =========================================
 
-Umlaute and some other special charactersare converted to their non-special equivalent.
+Umlaute and some other special characters are converted to their non-special equivalent.
 
 ======  ==========
 Umlaut  conversion

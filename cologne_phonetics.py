@@ -11,7 +11,7 @@ https://en.wikipedia.org/wiki/Cologne_phonetics
 """
 
 __author__ = "Janek Nouvertné"
-__version__ = "1.0.2"
+__version__ = "1.1.0"
 __license__ = "MIT"
 
 import sys
@@ -144,7 +144,7 @@ if __name__ == "__main__":
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("data",
                         help="String to be encoded")
-    parser.add_argument("-nc", "--concat",
+    parser.add_argument("-c", "--concat",
                         action="store_true",
                         help="Treat words connected by hyphens as seperate words")
     args = parser.parse_args()

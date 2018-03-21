@@ -113,8 +113,7 @@ class TestColognePhonetics(unittest.TestCase):
         self.assertEqual(encode("ah"), encode("ahø"))
 
     def test_concatenation(self):
-        self.assertEqual(encode("a-a"), ["0", "0"])
-        self.assertEqual(encode("a a"), ["0", "0"])
+        self.assertTrue(encode("a-a")==encode("a a")==["0","0"])
         self.assertEqual(encode("a-a", concat=True), "0")
         self.assertEqual(encode("a a", concat=True), ["0", "0"])
 
