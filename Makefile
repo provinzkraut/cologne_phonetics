@@ -17,7 +17,7 @@ test_36:
 	python3.6 test_cologne_phonetics.py
 
 release: test_all
-	python3 setup.py bdist_wheel
+	python3 setup.py sdist bdist_wheel
 	git add -A
 	git commit -e -m "Release $(VERSION)"
 	git tag $(VERSION)
