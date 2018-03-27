@@ -140,7 +140,6 @@ def encode_many(data, concat=True):
 
 
 if __name__ == "__main__":
-# def main():
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("data",
                         help="String to be encoded")
