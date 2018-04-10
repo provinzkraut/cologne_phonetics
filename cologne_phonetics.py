@@ -81,7 +81,7 @@ def encode(data, concat=False):
     """
     :param data str: Input to be encoded. Every whitespace character will be\
     interpreted as a wordbreak.
-    :param concatenate bool: The intended behaviour of the cologne-phonetics\
+    :param concat bool: The intended behaviour of the cologne-phonetics\
     is to ignore special characters. This leads to concatenation for strings\
     with hyphens. If :attr:`concatenate` is set to True` strings connected by\
     hyphens will be treated as two single strings.
@@ -127,9 +127,24 @@ def encode(data, concat=False):
 
 
 def compare(*data, concat=False):
+    """
+    Encode and compare strings.
 
-    if len(data) == 1 and isinstance(data[0], list):
-        data = data[0]
+    :param *data: Data to compare. Either at last 2 positional arguments or list
+    :param concat bool: Passed to `encode()`
+
+    :returns: True or False
+
+    :raises: ValueError if only one input string is given.
+    """
+
+
+    if len(data) == 1:
+        if isinstance(data[0], list):
+            data = data[0]
+        else:
+            raise ValueError('Compare called with only one value: "%s"' % data[0])
+
     last = None
     for s in data:
         res = encode(s)
