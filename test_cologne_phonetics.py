@@ -1,16 +1,14 @@
 import unittest
 from unittest import mock
 
-from cologne_phonetics import encode
+from cologne_phonetics import encode, compare
 
 
 def enc_first(val):
-    # return encode(val)[0][1]
-    d = encode(val)
-    return d[[k for k in d.keys()][0]]
+    return encode(val)[0][1]
 
 
-class TestColognePhonetics(unittest.TestCase):
+class TestEncode(unittest.TestCase):
 
     def multiple_before(self, char=None, before=None, exp=None):
         for b in before:
@@ -127,6 +125,7 @@ class TestColognePhonetics(unittest.TestCase):
         self.assertTrue(encode("a-a")==encode("a a")==[{'a': '0'}, {'a': '0'}])
         self.assertEqual(enc_first("a-a", concat=True), "0")
         self.assertEqual(enc_first("a a", concat=True), ["0", "0"])
+
 
 
 if __name__ == "__main__":

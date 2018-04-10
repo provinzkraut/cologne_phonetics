@@ -125,6 +125,20 @@ def encode(data, concat=False):
 
     return result
 
+def compare(*data, concat=False):
+
+    if len(data) == 1 and isinstance(data, list):
+        data = data[0]
+    last = None
+    for s in data:
+        res = encode(s)
+        if last and res != last:
+            return False
+        else:
+            last = res
+    else:
+        return True
+
 
 if __name__ == "__main__":
     parser = ArgumentParser(description=__doc__)
