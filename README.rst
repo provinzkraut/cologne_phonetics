@@ -94,6 +94,7 @@ Module contents
 The `cologne_phonetics` module consists of a single function:
 
 encode(data, *concat=False*)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Return a list of result tuples.
 
   Each tuple consists of the string that was encoded and its result.
@@ -109,6 +110,7 @@ encode(data, *concat=False*)
   substring will be encoded seperately.
 
 compare(\*data, *concat=False*)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Parameter
     *data
   Returns
