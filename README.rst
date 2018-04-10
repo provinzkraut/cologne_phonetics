@@ -109,13 +109,13 @@ Command line interface
   $ cologne_phonetics.py hello world
   05, 3752
 
-positional arguments
+Positional arguments
 ~~~~~~~~~~~~~~~~~~~~
 
-  data
-    String to be encoded
+data
+  String to be encoded
 
-optional arguments
+Optional arguments
 ~~~~~~~~~~~~~~~~~~~~
 
 -h, --help
