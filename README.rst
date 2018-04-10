@@ -9,12 +9,15 @@ Contents
 ========
 
 - `Cologne-phonetics`_
+
   - `Introduction`_
   - `Examples`_
 - `Installation`_
 - `Usage`_
+
   - `Command line interface`_
 - `Special characters`_
+
   - `Word breaks and hyphens`_
   - `Umlaut and special character replacement`_
   
