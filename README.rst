@@ -94,28 +94,32 @@ Module contents
 The `cologne_phonetics` module consists of a single function:
 
 encode(data, *concat=False*)
-  Return a list of result tuples.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  Each tuple consists of the string that was encoded and its result.
+Return a list of result tuples.
 
-  If the input string is altered in any way before encoding, the tuple will
-  contain the altered version.
+Each tuple consists of the string that was encoded and its result.
 
-  If ``concat=True`` is passed, words connected with hyphens will be treated as
-  a single words.
+If the input string is altered in any way before encoding, the tuple will
+contain the altered version.
 
-  Normally, the list should be ``len(result_list) == 1``. Only if the input string
-  contains a space character or a hyphen it is splitted into substrings and each
-  substring will be encoded seperately.
+If ``concat=True`` is passed, words connected with hyphens will be treated as
+a single words.
+
+Normally, the list should be ``len(result_list) == 1``. Only if the input string
+contains a space character or a hyphen it is splitted into substrings and each
+substring will be encoded seperately.
 
 compare(\*data, *concat=False*)
-  Parameter
-    *data
-  Returns
-    `True` if all encoded strings are equal, else `False`
-  Raises
-    `ValueError`.
-    If only one value is submitted or the submitted Iterable is of lenght 1.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Parameter
+  *data
+Returns
+  `True` if all encoded strings are equal, else `False`
+Raises
+  `ValueError`.
+  If only one value is submitted or the submitted Iterable is of lenght 1.
 
 
 Command line interface
