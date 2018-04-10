@@ -16,6 +16,7 @@ Contents
 - `Usage`_
 
   - `Module contents`_
+  - `Examples`_
   - `Command line interface`_
 - `Special characters`_
 
@@ -84,6 +85,28 @@ Alternatively you can download the latest unstable_ or release_ directly.
 Usage
 =====
 
+Module contents
+===============
+
+encode(*concat=False*)
+  Return a list of result tuples.
+
+  Each tuple consists of the string that was encoded and its result.
+
+  If the input string is altered in any way before encoding, the tuple will
+  contain the altered version.
+
+  If ``concat=True`` is passed, words connected with hyphens will be treated as
+  a single words.
+
+  Normally, the list should be ``len(result_list) == 1``. Only if the input string
+  contains a space character or a hyphen it is splitted into substrings and each
+  substring will be encoded seperately.
+
+
+Examples
+========
+
 .. code-block:: python
 
   >>> import cologne_phonetics
@@ -95,27 +118,6 @@ Usage
   >>> [('hello-world', '053752')]
   >>> cologne_phonetics.encode("hello world")
   >>> [('hello', '05'), ('world', '3752')]
-
-
-
-Normally, the list should be ``len(result_list) == 1``. Only if the input string
-contains a space character or a hyphen it is splitted into substrings and each
-substring will be encoded seperately.
-
-
-Module contents
-===============
-
-encode(*concat=False*)
-  Return a list of result tuples.
-  Each tuple consists of the string that was encoded and its result.
-  If the input string is altered in any way before encoding, the tuple will
-  contain the altered version.
-  If ``concat=True`` is passed, words connected with hyphens will be treated as
-  a single words.
-
-
-
 
 
 Command line interface
@@ -199,8 +201,9 @@ Umlaut  conversion
 Changelog
 =========
 
-1.1.2
+1.2.0
 =====
 
 - Removed `encode_many()`
 - `encode()` now allways returns a list of result tuples
+- Added `--verbose` and `--pretty` options to CLI
