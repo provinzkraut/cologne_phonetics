@@ -126,22 +126,6 @@ def encode(data, concat=False):
     return result
 
 
-def encode_many(data, concat=True):
-    """
-    Encode a list of strings
-
-    :arg data list: List of strings
-
-    :rtype: list
-    :return: List of encoded strings
-    """
-
-    result = []
-    for s in data:
-        result.append(encode(s, concat=concat))
-    return result
-
-
 if __name__ == "__main__":
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("data",
