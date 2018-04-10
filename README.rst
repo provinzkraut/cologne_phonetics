@@ -5,6 +5,24 @@
 Cologne-phonetics
 =================
 
+Contents
+========
+
+- `Cologne-phonetics`_
+  - `Introduction`_
+  - `Examples`_
+- `Installation`_
+- `Usage`_
+  - `Command line interface`_
+- `Special characters`_
+  - `Word breaks and hyphens`_
+  - `Umlaut and special character replacement`_
+  
+
+
+Introduction
+============
+
 Cologne-phonetics is a phonetic algorithm similar to Soundex, wich encodes words into a phonetic code, making it possible to compare how they *sound* rather than how they're *written*.
 It was developed by Hans Postel and contrary to Soundex, it's designed specific for the german language.
 
@@ -18,8 +36,8 @@ The module itself is quite simple and consists only of the ``encode()`` function
 convinience wrapper ``encode_many()``` and a simple command line interface.
 
 
-A few examples
-============================
+Examples
+==============
 
 .. code-block:: bash
 
@@ -41,9 +59,9 @@ As you can see, this does not give the same result for each name because it may 
 but (when pronounced correctly) don't really *sound* the same.
 
 
-=============
+============
 Installation
-=============
+============
 
 cologne_phonetics is available on PyPi for Python 3.4+. So it can be installed it via pip:
 
@@ -54,9 +72,9 @@ cologne_phonetics is available on PyPi for Python 3.4+. So it can be installed i
 Alternively, cou can download the latest unstable_ or release_ directly.
 
 
-=========
+=====
 Usage
-=========
+=====
 
 .. rubric:: Example: Encoding a string
 
