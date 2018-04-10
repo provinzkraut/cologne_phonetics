@@ -15,6 +15,7 @@ Contents
 - `Installation`_
 - `Usage`_
 
+  - `Module contents`_
   - `Command line interface`_
 - `Special characters`_
 
@@ -88,6 +89,14 @@ Usage
   >>> import cologne_phonetics
   >>> cologne_phonetics.encode("hello")
   >>> [('hello', '05')]
+
+
+Module contents
+===============
+
+encode(concat=False)
+
+
 
 
 Command line interface

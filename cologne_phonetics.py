@@ -133,6 +133,17 @@ if __name__ == "__main__":
     parser.add_argument("-c", "--concat",
                         action="store_true",
                         help="Treat words connected by hyphens as seperate words")
+    parser.add_argument("-v", "--verbose",
+                        action="store_true",
+                        help="show detailed information")
+    parser.add_argument("-p", "--pretty",
+                       action="store_true",
+                       help="format output nicely")
     args = parser.parse_args()
     res = encode(args.data, concat=args.concat)
-    print(res)
+    if args.verbose:
+        sep = '\n' if args.pretty else ', '
+        out = sep.join([r[0]+": "+r[1] for r in res])
+    else:
+        out = ', '.join([r[1] for r in res])
+    print(out)
