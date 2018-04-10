@@ -54,18 +54,18 @@ Examples
 .. code-block:: bash
 
   $ cologne_phonetics.py "peter pédter"
-  [('peter', '127'), ('pédter', '127')]
+  127, 127
   $ cologne_phonetics.py "umwelt umhwält"
-  [('umwelt', '06352'), ('umhwält', '06352')]
+  06352, 06352
   $ cologne_phonetics.py "urlaub uhrlaup"
-  [('urlaub', '0751'), ('uhrlaup', '0751')]
+  0751, 0751
 
 As you can see, similar sounding names produce the same result, with respect to the *right* pronunciation.
 
 .. code-block:: bash
 
   $ cologne_phonetics.py "peter peta"
-  [('peter', '127'), ('peta', '12')]
+  127, 12
 
 As you can see, this does not give the same result for each name because it may seem similar,
 but (when pronounced correctly) don't really *sound* the same.
@@ -107,22 +107,6 @@ encode(*concat=False*)
   Normally, the list should be ``len(result_list) == 1``. Only if the input string
   contains a space character or a hyphen it is splitted into substrings and each
   substring will be encoded seperately.
-
-
-Examples
-========
-
-.. code-block:: python
-
-  >>> import cologne_phonetics
-  >>> cologne_phonetics.encode("hello")
-  >>> [('hello', '05')]
-  >>> cologne_phonetics.encode("hello-world")
-  >>> [('hello', '05'), ('world', '3752')]
-  >>> cologne_phonetics.encode("hello-world", concat=True)
-  >>> [('hello-world', '053752')]
-  >>> cologne_phonetics.encode("hello world")
-  >>> [('hello', '05'), ('world', '3752')]
 
 
 Command line interface
