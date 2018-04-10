@@ -1,6 +1,7 @@
 .. _unstable: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/master/cologne_phonetics.py
 .. _release: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/1.0.2/cologne_phonetics.py
 
+
 =================
 Cologne-phonetics
 =================
@@ -16,6 +17,8 @@ Contents
 - `Usage`_
 
   - `Module contents`_
+    - `encode`_
+    - `compare`_
   - `Examples`_
   - `Command line interface`_
 - `Special characters`_
@@ -93,16 +96,10 @@ Module contents
 
 The `cologne_phonetics` module consists of a single function:
 
-encode(data, *concat=False*)
-<<<<<<< HEAD
-<<<<<<< HEAD
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _encode:
 
-=======
->>>>>>> parent of c877383... reformat readme
-=======
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>>>>>> c8773834179559fbdd9261601a6de7516b977185
+encode(data, *concat=False*)
+
   Return a list of result tuples.
 
   Each tuple consists of the string that was encoded and its result.
@@ -117,16 +114,9 @@ encode(data, *concat=False*)
   contains a space character or a hyphen it is splitted into substrings and each
   substring will be encoded seperately.
 
-compare(\*data, *concat=False*)
-<<<<<<< HEAD
-<<<<<<< HEAD
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _compare:
 
-=======
->>>>>>> parent of c877383... reformat readme
-=======
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>>>>>> c8773834179559fbdd9261601a6de7516b977185
+compare(\*data, *concat=False*)
   Parameter
     *data
   Returns
