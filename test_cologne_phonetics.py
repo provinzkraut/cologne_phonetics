@@ -136,5 +136,16 @@ class TestCompare(unittest.TestCase):
         self.assertTrue(compare("a", "a"))
         self.assertFalse(compare("a", "x"))
 
+    def test_raises_on_one_value(self):
+        with self.assertRaises(ValueError):
+            compare("a")
+            
+        with self.assertRaises(ValueError):
+            compare(["a"])
+
+
+
+
+
 if __name__ == "__main__":
     unittest.main()
