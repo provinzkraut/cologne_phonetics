@@ -105,9 +105,28 @@ Command line interface
 .. code-block:: bash
 
   $ cologne_phonetics.py hello
-  [('hello', '05')]
+  05
   $ cologne_phonetics.py hello world
-  [('hello', '05'), ('world', '3752')]
+  05, 3752
+
+positional arguments
+~~~~~~~~~~~~~~~~~~~~
+
+  data
+    String to be encoded
+
+optional arguments
+~~~~~~~~~~~~~~~~~~~~
+
+-h, --help
+  show this help message and exit
+-c, --concat
+  Treat words connected by hyphens as seperate words
+-v, --verbose
+  show detailed information
+-p, --pretty
+  format output nicely
+
 
 
 ===================
