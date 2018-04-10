@@ -127,6 +127,14 @@ class TestEncode(unittest.TestCase):
         self.assertEqual(enc_first("a a", concat=True), ["0", "0"])
 
 
+class TestCompare(unittest.TestCase):
+
+    def test_input(self):
+        self.assertEqual(compare(["a", "b", "c"]), compare("a", "b", "c"))
+
+    def test_compare(self):
+        self.assertTrue(compare("a", "a"))
+        self.assertFalse(compare("a", "x"))
 
 if __name__ == "__main__":
     unittest.main()
