@@ -95,10 +95,14 @@ The `cologne_phonetics` module consists of a single function:
 
 encode(data, *concat=False*)
 <<<<<<< HEAD
+<<<<<<< HEAD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 =======
 >>>>>>> parent of c877383... reformat readme
+=======
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>>>>>> c8773834179559fbdd9261601a6de7516b977185
   Return a list of result tuples.
 
   Each tuple consists of the string that was encoded and its result.
@@ -115,10 +119,14 @@ encode(data, *concat=False*)
 
 compare(\*data, *concat=False*)
 <<<<<<< HEAD
+<<<<<<< HEAD
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 =======
 >>>>>>> parent of c877383... reformat readme
+=======
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>>>>>> c8773834179559fbdd9261601a6de7516b977185
   Parameter
     *data
   Returns
