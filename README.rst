@@ -44,7 +44,7 @@ according to a conversion table
 - Remove double digits
 - Remove every occurence of '0', except as a leading digit
 
-The module itself is quite simple and consists only of the ``encode()`` function
+The module itself is quite simple and consists only of the ``encode()`` and ``compare()`` functions
 and a simple command line interface.
 
 
@@ -93,7 +93,7 @@ Module contents
 
 The `cologne_phonetics` module consists of a single function:
 
-encode(*concat=False*)
+encode(data, *concat=False*)
   Return a list of result tuples.
 
   Each tuple consists of the string that was encoded and its result.
@@ -107,6 +107,15 @@ encode(*concat=False*)
   Normally, the list should be ``len(result_list) == 1``. Only if the input string
   contains a space character or a hyphen it is splitted into substrings and each
   substring will be encoded seperately.
+
+compare(\*data, *concat=False*)
+  Parameter
+    *data
+  Returns
+    `True` if all encoded strings are equal, else `False`
+  Raises
+    `ValueError`.
+    If only one value is submitted or the submitted Iterable is of lenght 1.
 
 
 Command line interface
