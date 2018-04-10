@@ -125,9 +125,10 @@ def encode(data, concat=False):
 
     return result
 
+
 def compare(*data, concat=False):
 
-    if len(data) == 1 and isinstance(data, list):
+    if len(data) == 1 and isinstance(data[0], list):
         data = data[0]
     last = None
     for s in data:
