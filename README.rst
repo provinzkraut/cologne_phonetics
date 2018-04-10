@@ -17,6 +17,7 @@ Contents
 - `Usage`_
 
   - `Module contents`_
+
     - `encode`_
     - `compare`_
   - `Examples`_
@@ -99,7 +100,6 @@ The `cologne_phonetics` module consists of a single function:
 .. _encode:
 
 encode(data, *concat=False*)
-
   Return a list of result tuples.
 
   Each tuple consists of the string that was encoded and its result.
