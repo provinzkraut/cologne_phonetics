@@ -129,10 +129,10 @@ def encode(data, concat=False):
 if __name__ == "__main__":
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("data",
-                        help="String to be encoded")
+                        help="string to be encoded")
     parser.add_argument("-c", "--concat",
                         action="store_true",
-                        help="Treat words connected by hyphens as seperate words")
+                        help="treat words connected by hyphens as seperate words")
     parser.add_argument("-v", "--verbose",
                         action="store_true",
                         help="show detailed information")

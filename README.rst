@@ -89,12 +89,31 @@ Usage
   >>> import cologne_phonetics
   >>> cologne_phonetics.encode("hello")
   >>> [('hello', '05')]
+  >>> cologne_phonetics.encode("hello-world")
+  >>> [('hello', '05'), ('world', '3752')]
+  >>> cologne_phonetics.encode("hello-world", concat=True)
+  >>> [('hello-world', '053752')]
+  >>> cologne_phonetics.encode("hello world")
+  >>> [('hello', '05'), ('world', '3752')]
+
+
+
+Normally, the list should be ``len(result_list) == 1``. Only if the input string
+contains a space character or a hyphen it is splitted into substrings and each
+substring will be encoded seperately.
 
 
 Module contents
 ===============
 
-encode(concat=False)
+encode(*concat=False*)
+  Return a list of result tuples.
+  Each tuple consists of the string that was encoded and its result.
+  If the input string is altered in any way before encoding, the tuple will
+  contain the altered version.
+  If ``concat=True`` is passed, words connected with hyphens will be treated as
+  a single words.
+
 
 
 
@@ -109,11 +128,6 @@ Command line interface
   $ cologne_phonetics.py hello world
   05, 3752
 
-Positional arguments
-~~~~~~~~~~~~~~~~~~~~
-
-data
-  String to be encoded
 
 Optional arguments
 ~~~~~~~~~~~~~~~~~~~~
@@ -121,7 +135,7 @@ Optional arguments
 -h, --help
   show this help message and exit
 -c, --concat
-  Treat words connected by hyphens as seperate words
+  treat words connected by hyphens as seperate words
 -v, --verbose
   show detailed information
 -p, --pretty
@@ -142,7 +156,7 @@ Word breaks and hyphens
 ========================
 
 By default, words connected by hyphens, e.g. ``meier-lüdenscheid`` are seperated.
-So ``meier-lüdenscheid`` would become ``['67', '52682']``. If you
+So ``meier-lüdenscheid`` would become ``'67', '52682'``. If you
 want it to be treated as a single word, you can pass a ``concat=True``
 to the encode functions. In this case, a list with the seperated, encoded words
 will be returned.
@@ -153,9 +167,9 @@ into a list of strings, in some cases it can make a difference.
 .. code-block:: python
 
   >>> cologne_phonetics.encode("weiss-chemie")
-  >>> ['38', '46']
+  >>> [('weiss', '38'), ('chemie', '46')]
   >>> cologne_phonetics.encode("weiss-chemie", concat=True)
-  >>> '386'
+  >>> [('weiss-chemie', '386')]
 
 As you can see, a ``4`` got lost here.
 In case you *really* want to compare the concatenated words you may use this option,
