@@ -72,7 +72,7 @@ cologne_phonetics is available on PyPi for Python 3.4+. So it can be installed i
 
   pip install cologne_phonetics
 
-Alternively, cou can download the latest unstable_ or release_ directly.
+Alternatively you can download the latest unstable_ or release_ directly.
 
 
 =====
