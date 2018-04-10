@@ -138,12 +138,11 @@ def compare(*data, concat=False):
     :raises: ValueError if only one input string is given.
     """
 
+    if len(data) == 1 and isinstance(data[0], list):
+        data = data[0]
 
     if len(data) == 1:
-        if isinstance(data[0], list):
-            data = data[0]
-        else:
-            raise ValueError('Compare called with only one value: "%s"' % data[0])
+        raise ValueError('Compare called with only one value: "%s"' % data[0])
 
     last = None
     for s in data:
