@@ -20,7 +20,11 @@ Contents
 
   - `Word breaks and hyphens`_
   - `Umlaut and special character replacement`_
-  
+
+- `Changelog`_
+
+  - `1.1.2`_
+
 
 
 Introduction
@@ -45,18 +49,18 @@ Examples
 .. code-block:: bash
 
   $ cologne_phonetics.py "peter pédter"
-  ['127', '127']
+  [('peter', '127'), ('pédter', '127')]
   $ cologne_phonetics.py "umwelt umhwält"
-  ['06352', '06352']
+  [('umwelt', '06352'), ('umhwält', '06352')]
   $ cologne_phonetics.py "urlaub uhrlaup"
-  ['0751', '0751']
+  [('urlaub', '0751'), ('uhrlaup', '0751')]
 
 As you can see, similar sounding names produce the same result, with respect to the *right* pronunciation.
 
 .. code-block:: bash
 
   $ cologne_phonetics.py "peter peta"
-  ['127', '12']
+  [('peter', '127'), ('peta', '12')]
 
 As you can see, this does not give the same result for each name because it may seem similar,
 but (when pronounced correctly) don't really *sound* the same.
@@ -79,21 +83,11 @@ Alternatively you can download the latest unstable_ or release_ directly.
 Usage
 =====
 
-.. rubric:: Example: Encoding a string
-
 .. code-block:: python
 
   >>> import cologne_phonetics
   >>> cologne_phonetics.encode("hello")
-  >>> 05
-
-.. rubric:: Example: Encoding a list of strings
-
-.. code-block:: python
-
-  >>> import cologne_phonetics
-  >>> cologne_phonetics.encode_many(["hello", "world"])
-  >>> ['05', '3752']
+  >>> [('hello', '05')]
 
 
 Command line interface
@@ -102,9 +96,9 @@ Command line interface
 .. code-block:: bash
 
   $ cologne_phonetics.py hello
-  05
+  [('hello', '05')]
   $ cologne_phonetics.py hello world
-  ['05', '3752']
+  [('hello', '05'), ('world', '3752')]
 
 
 ===================
@@ -157,3 +151,14 @@ Umlaut  conversion
 á       a
 à       a
 ======  ==========
+
+
+=========
+Changelog
+=========
+
+1.1.2
+=====
+
+- Removed `encode_many()`
+- `encode()` now allways returns a list of result tuples

@@ -135,5 +135,4 @@ if __name__ == "__main__":
                         help="Treat words connected by hyphens as seperate words")
     args = parser.parse_args()
     res = encode(args.data, concat=args.concat)
-
     print(res)
