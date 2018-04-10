@@ -11,7 +11,7 @@ https://en.wikipedia.org/wiki/Cologne_phonetics
 """
 
 __author__ = "Janek Nouvertné"
-__version__ = "1.1.1"
+__version__ = "1.2.0"
 __license__ = "MIT"
 
 import sys
@@ -86,9 +86,8 @@ def encode(data, concat=False):
     with hyphens. If :attr:`concatenate` is set to True` strings connected by\
     hyphens will be treated as two single strings.
 
-    :rtype: str or list
-    :return: Return an encoded string if :attr:`data` is a string. Return\
-    a list of encoded substrings if :attr:`data` contains a wordbreak.
+    :rtype: dict
+    :return: Return a dict of input / encoded substring pairs
 
     :note: Contrary to many other implementations, in the final pass only\
     repeated **digits** are removed, not repeated **numbers**. Resulting e.g.\
@@ -113,12 +112,16 @@ def encode(data, concat=False):
     if " " in data:
         data = data.split(" ")
         _in_data = data
+        # result = {}
         result = []
         for i in data:
-            result.append(_enc(i))
+            # result[i] = _enc(i)
+            result.append((i, _enc(i)))
     else:
         _in_data = data
-        result = _enc(data)
+        # result = _enc(data)
+        # result = {data: _enc(data)}
+        result = [(data, _enc(data))]
 
     return result
 
@@ -147,8 +150,6 @@ if __name__ == "__main__":
                         action="store_true",
                         help="Treat words connected by hyphens as seperate words")
     args = parser.parse_args()
-    if " " in args.data:
-        res = encode_many(args.data.split(" "), concat=args.concat)
-    else:
-        res = encode(args.data, concat=args.concat)
+    res = encode(args.data, concat=args.concat)
+
     print(res)
