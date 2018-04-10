@@ -25,24 +25,27 @@ Contents
 
 - `Changelog`_
 
-  - `1.1.2`_
+  - `1.2.0`_
 
 
 
 Introduction
 ============
 
-Cologne-phonetics is a phonetic algorithm similar to Soundex, wich encodes words into a phonetic code, making it possible to compare how they *sound* rather than how they're *written*.
-It was developed by Hans Postel and contrary to Soundex, it's designed specific for the german language.
+Cologne-phonetics is a phonetic algorithm similar to Soundex, wich encodes words
+into a phonetic code, making it possible to compare how they *sound* rather than how they're *written*.
+It was developed by Hans Postel and contrary to Soundex, it's designed specific
+for the german language.
 
 It involves three steps:
 
-- Generate a code by representing every letter from left to right with a digit, according to a conversion table
+- Generate a code by representing every letter from left to right with a digit,
+according to a conversion table
 - Remove double digits
 - Remove every occurence of '0', except as a leading digit
 
-The module itself is quite simple and consists only of the ``encode()`` function, it's
-convinience wrapper ``encode_many()``` and a simple command line interface.
+The module itself is quite simple and consists only of the ``encode()`` function
+and a simple command line interface.
 
 
 Examples
@@ -87,6 +90,8 @@ Usage
 
 Module contents
 ===============
+
+The `cologne_phonetics` module consists of a single function:
 
 encode(*concat=False*)
   Return a list of result tuples.
