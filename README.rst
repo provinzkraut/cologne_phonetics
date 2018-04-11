@@ -95,8 +95,6 @@ Usage
 Module contents
 ===============
 
-The `cologne_phonetics` module consists of a single function:
-
 .. _encode:
 
 encode(data, *concat=False*)

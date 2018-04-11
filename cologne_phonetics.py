@@ -112,15 +112,11 @@ def encode(data, concat=False):
     if " " in data:
         data = data.split(" ")
         _in_data = data
-        # result = {}
         result = []
         for i in data:
-            # result[i] = _enc(i)
             result.append((i, _enc(i)))
     else:
         _in_data = data
-        # result = _enc(data)
-        # result = {data: _enc(data)}
         result = [(data, _enc(data))]
 
     return result
