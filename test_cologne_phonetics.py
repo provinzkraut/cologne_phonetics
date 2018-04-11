@@ -4,8 +4,8 @@ from unittest import mock
 from cologne_phonetics import encode, compare
 
 
-def enc_first(val):
-    return encode(val)[0][1]
+def enc_first(val, **kwargs):
+    return encode(val, **kwargs)[0][1]
 
 
 class TestEncode(unittest.TestCase):
@@ -120,11 +120,10 @@ class TestEncode(unittest.TestCase):
     def test_ignore_invalid(self):
         self.assertEqual(enc_first("ah"), enc_first("ahø"))
 
-    @unittest.skip("")
     def test_concatenation(self):
-        self.assertTrue(encode("a-a")==encode("a a")==[{'a': '0'}, {'a': '0'}])
-        self.assertEqual(enc_first("a-a", concat=True), "0")
-        self.assertEqual(enc_first("a a", concat=True), ["0", "0"])
+        self.assertTrue(encode("a-a")==encode("a a"))
+        self.assertEqual(encode("a-a", concat=True), [("a-a", '0')])
+        self.assertEqual(encode("a a", concat=True), [('a', '0'), ('a', '0')])
 
 
 class TestCompare(unittest.TestCase):
@@ -139,12 +138,8 @@ class TestCompare(unittest.TestCase):
     def test_raises_on_one_value(self):
         with self.assertRaises(ValueError):
             compare("a")
-            
         with self.assertRaises(ValueError):
             compare(["a"])
-
-
-
 
 
 if __name__ == "__main__":
