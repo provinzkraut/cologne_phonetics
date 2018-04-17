@@ -16,6 +16,7 @@ __license__ = "MIT"
 
 import sys
 import re
+from collections import Iterable
 from argparse import ArgumentParser, ArgumentTypeError
 
 
@@ -124,7 +125,7 @@ def compare(*data, concat=False):
     """
     Encode and compare strings.
 
-    :param *data: Data to compare. Either at last 2 positional arguments or list
+    :param *data: Data to compare. Either at last 2 positional arguments or an iterable
     :param concat bool: Passed to `encode()`
 
     :returns: True or False
@@ -132,7 +133,7 @@ def compare(*data, concat=False):
     :raises: ValueError if only one input string is given.
     """
 
-    if len(data) == 1 and isinstance(data[0], list):
+    if isinstance(data[0], Iterable) and len(data) == 1:
         data = data[0]
 
     if len(data) == 1:
