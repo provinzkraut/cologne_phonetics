@@ -131,6 +131,10 @@ class TestCompare(unittest.TestCase):
     def test_input(self):
         self.assertEqual(compare(["a", "b", "c"]), compare("a", "b", "c"))
 
+    def test_iterinput(self):
+        for i in (["a", "b"], ("a", "b"), {"a", "b"}):
+            self.assertFalse(compare(i))
+
     def test_compare(self):
         self.assertTrue(compare("a", "a"))
         self.assertFalse(compare("a", "x"))
