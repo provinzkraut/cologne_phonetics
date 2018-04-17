@@ -116,7 +116,7 @@ encode(data, *concat=False*)
 
 compare(\*data, *concat=False*)
   Parameter
-    *data
+    \*data. Either at last 2 positional arguments or an iterable
   Returns
     `True` if all encoded strings are equal, else `False`
   Raises
@@ -211,3 +211,4 @@ Changelog
 - Removed `encode_many()`
 - `encode()` now allways returns a list of result tuples
 - Added `--verbose` and `--pretty` options to CLI
+- New function: `compare()`
