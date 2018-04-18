@@ -19,7 +19,6 @@ test_36:
 release: test_all
 	python3 setup.py sdist bdist_wheel
 	git add -A
-	git commit -e -m "Release $(VERSION)"
 	git tag $(VERSION)
 	git push origin HEAD
 	git push origin tag $(VERSION)
