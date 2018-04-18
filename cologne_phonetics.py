@@ -121,7 +121,7 @@ def encode(data, concat=False):
     return result
 
 
-def compare(*data, concat=False):
+def compare(concat=False, *data):
     """
     Encode and compare strings.
 
