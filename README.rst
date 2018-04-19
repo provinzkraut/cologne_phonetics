@@ -46,8 +46,7 @@ for the german language.
 
 It involves three steps:
 
-- Generate a code by representing every letter from left to right with a digit,
-according to a conversion table
+- Generate a code by representing every letter from left to right with a digit, according to a conversion table
 - Remove double digits
 - Remove every occurence of '0', except as a leading digit
 
