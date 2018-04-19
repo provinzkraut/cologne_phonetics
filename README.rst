@@ -30,6 +30,7 @@ Contents
 - `Changelog`_
 
   - `1.2.0`_
+  - `1.2.1`_
 
 
 
@@ -212,3 +213,8 @@ Changelog
 - `encode()` now allways returns a list of result tuples
 - Added `--verbose` and `--pretty` options to CLI
 - New function: `compare()`
+
+1.2.1
+=====
+
+- Fixed an error that would lead to case sensitive comparison in `compare`_
