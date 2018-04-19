@@ -50,7 +50,7 @@ It involves three steps:
 - Remove double digits
 - Remove every occurence of '0', except as a leading digit
 
-The module itself is quite simple and consists only of the ``encode()`` and ``compare()`` functions
+The module itself is quite simple and consists only of the `encode`_ and `compare`_  functions
 and a simple command line interface.
 
 
