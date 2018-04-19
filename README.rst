@@ -1,5 +1,6 @@
 .. _unstable: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/master/cologne_phonetics.py
 .. _release: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/1.0.2/cologne_phonetics.py
+.. _`try out`: https://phonetics.provinzkraut.de 
 
 
 =================
@@ -13,6 +14,7 @@ Contents
 
   - `Introduction`_
   - `Examples`_
+  - `Try it`_
 - `Installation`_
 - `Usage`_
 
@@ -54,7 +56,7 @@ and a simple command line interface.
 
 
 Examples
-==============
+========
 
 .. code-block:: bash
 
@@ -74,6 +76,12 @@ As you can see, similar sounding names produce the same result, with respect to 
 
 As you can see, this does not give the same result for each name because it may seem similar,
 but (when pronounced correctly) don't really *sound* the same.
+
+
+Try it
+======
+
+At you can `try out`_ this implementation or use it's API.
 
 
 ============
