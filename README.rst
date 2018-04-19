@@ -1,5 +1,5 @@
 .. _unstable: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/master/cologne_phonetics.py
-.. _release: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/1.0.2/cologne_phonetics.py
+.. _release: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/1.2.1/cologne_phonetics.py
 .. _`try out`: https://phonetics.provinzkraut.de 
 
 
