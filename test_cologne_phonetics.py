@@ -125,6 +125,9 @@ class TestEncode(unittest.TestCase):
         self.assertEqual(encode("a-a", concat=True), [("a-a", '0')])
         self.assertEqual(encode("a a", concat=True), [('a', '0'), ('a', '0')])
 
+    def test_case_insensitive(self):
+        self.assertEqual(encode("foo"), encode("FoO"))
+
 
 class TestCompare(unittest.TestCase):
 
@@ -134,6 +137,9 @@ class TestCompare(unittest.TestCase):
     def test_iterinput(self):
         for i in (["a", "b"], ("a", "b"), {"a", "b"}):
             self.assertFalse(compare(i))
+
+    def test_case_insensitive(self):
+        self.assertTrue(compare("foo", "FoO"))
 
     def test_compare(self):
         self.assertTrue(compare("a", "a"))

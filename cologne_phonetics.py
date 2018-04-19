@@ -102,10 +102,11 @@ def encode(data, concat=False):
 
     def _enc(s):
         s = s.lower()
+        o = s
         if RGX_SPECIAL_CHARS.search(s):
             s = _replace_by_rules(RGX_SPECIAL_CHAR_REPLACEMENTS, s)
         s = _replace_by_rules(RGX_RULES, s)
-        return s
+        return o, s
 
 
     if not concat:
@@ -114,9 +115,9 @@ def encode(data, concat=False):
         data = data.split(" ")
         result = []
         for i in data:
-            result.append((i, _enc(i)))
+            result.append(_enc(i))
     else:
-        result = [(data, _enc(data))]
+        result = [_enc(data)]
 
     return result
 
