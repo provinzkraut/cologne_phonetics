@@ -144,6 +144,10 @@ class TestCompare(unittest.TestCase):
     def test_compare(self):
         self.assertTrue(compare("a", "a"))
         self.assertFalse(compare("a", "x"))
+        self.assertTrue(compare("foo", "fuh"))
+        self.assertTrue(compare("foo-foo", "foo-fuh"))
+        self.assertTrue(compare("foo foo", "foo-fuh"))
+        self.assertFalse(compare("foo-foo", "foo-fuh", "foo bar"))
 
     def test_raises_on_one_value(self):
         with self.assertRaises(ValueError):
