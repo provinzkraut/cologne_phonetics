@@ -142,7 +142,7 @@ def compare(*data, concat=False):
 
     last = None
     for s in data:
-        res = encode(s)
+        res = [r[1] for r in encode(s)]
         if last and res != last:
             return False
         else:
