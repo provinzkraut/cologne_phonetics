@@ -1,6 +1,6 @@
-.. _unstable: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/master/cologne_phonetics.py
-.. _release: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/1.2.1/cologne_phonetics.py
-.. _`try out`: https://phonetics.provinzkraut.de 
+.. _release: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/1.2.2/cologne_phonetics.py
+.. _`try out`: https://phonetics.provinzkraut.de
+.. _`PyPi`: https://pypi.org/project/cologne-phonetics/
 
 
 =================
@@ -33,6 +33,7 @@ Contents
 
   - `1.2.0`_
   - `1.2.1`_
+  - `1.2.2`_
 
 
 
@@ -80,20 +81,20 @@ but (when pronounced correctly) don't really *sound* the same.
 Try it
 ======
 
-At you can `try out`_ this implementation or use it's API.
+At you can `try out`_ this implementation or use its API.
 
 
 ============
 Installation
 ============
 
-cologne_phonetics is available on PyPi for Python 3.4+. So it can be installed it via pip:
+cologne_phonetics is available on `PyPi`_ for Python 3.4+. So it can be installed it via pip:
 
 .. code-block:: bash
 
   pip install cologne_phonetics
 
-Alternatively you can download the latest unstable_ or release_ directly.
+Alternatively you can download the latest release_ directly.
 
 
 =====
@@ -225,3 +226,8 @@ Changelog
 =====
 
 - Fixed an error that would lead to case sensitive comparison in `compare`_
+
+1.2.2
+=====
+
+- Another error in `compare`_ was found (and fixed); Compare didn't actually compare output. It compared input. This was due to bad tests and introduced in 1.2.0, wich the change that made `encode`_ always return a tuple as a result
