@@ -147,9 +147,13 @@ class TestCompare(unittest.TestCase):
 
     def test_raises_on_one_value(self):
         with self.assertRaises(ValueError):
-            compare("a")
+            compare("foo")
         with self.assertRaises(ValueError):
-            compare(["a"])
+            compare(["foo"])
+        with self.assertRaises(ValueError):
+            compare("f")
+        with self.assertRaises(ValueError):
+            compare(["f"])
 
 
 if __name__ == "__main__":

@@ -134,7 +134,7 @@ def compare(*data, concat=False):
     :raises: ValueError if only one input string is given.
     """
 
-    if isinstance(data[0], Iterable) and len(data) == 1:
+    if not isinstance(data[0], str) and (data[0], Iterable) and len(data) == 1:
         data = data[0]
 
     if len(data) == 1:
