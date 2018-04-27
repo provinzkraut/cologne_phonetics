@@ -1,4 +1,4 @@
-VERSION = $(shell python setup.py --version)
+VERSION = $(shell python3 setup.py --version)
 
 .PHONY: test test_all test_34 test_35 test_36 release
 
