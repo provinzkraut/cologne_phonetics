@@ -8,6 +8,10 @@
 Cologne-phonetics
 =================
 
+.. image:: https://travis-ci.org/provinzkraut/cologne_phonetics.svg?branch=master
+    :target: https://travis-ci.org/provinzkraut/cologne_phonetics
+    :alt: cologne_phonetics build
+
 Contents
 ========
 
