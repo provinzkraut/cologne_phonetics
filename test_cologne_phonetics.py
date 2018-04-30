@@ -128,6 +128,9 @@ class TestEncode(unittest.TestCase):
     def test_case_insensitive(self):
         self.assertEqual(encode("foo"), encode("FoO"))
 
+    def test_returns_altered(self):
+        self.assertEqual(encode("bäTes")[0][0], "baetes")
+
 
 class TestCompare(unittest.TestCase):
 
