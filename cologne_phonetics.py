@@ -13,7 +13,7 @@ https://en.wikipedia.org/wiki/Cologne_phonetics
 """
 
 __author__ = "Janek Nouvertné"
-__version__ = "1.2.2"
+__version__ = "1.2.3"
 __license__ = "MIT"
 
 import sys
@@ -104,9 +104,9 @@ def encode(data, concat=False):
 
     def _enc(s):
         s = s.lower()
-        o = s
         if RGX_SPECIAL_CHARS.search(s):
             s = _replace_by_rules(RGX_SPECIAL_CHAR_REPLACEMENTS, s)
+        o = s
         s = _replace_by_rules(RGX_RULES, s)
         return o, s
 
