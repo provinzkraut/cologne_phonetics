@@ -11,6 +11,14 @@ Cologne-phonetics
 .. image:: https://travis-ci.org/provinzkraut/cologne_phonetics.svg?branch=master
     :target: https://travis-ci.org/provinzkraut/cologne_phonetics
     :alt: cologne_phonetics build
+    
+.. image:: https://coveralls.io/repos/github/provinzkraut/cologne_phonetics/badge.svg?branch=master
+    :target: https://coveralls.io/github/provinzkraut/cologne_phonetics?branch=master
+    :alt: cologne_phonetics coverage
+    
+.. image:: https://img.shields.io/pypi/pyversions/cologne-phonetics.svg   
+    :alt: PyPI version
+    
 
 Contents
 ========
@@ -19,7 +27,7 @@ Contents
 
   - `Introduction`_
   - `Examples`_
-  - `Try it`_
+  - `Try it / API`_
 - `Installation`_
 - `Usage`_
 
