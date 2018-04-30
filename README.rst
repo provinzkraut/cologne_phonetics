@@ -1,5 +1,6 @@
 .. _release: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/1.2.2/cologne_phonetics.py
 .. _`try out`: https://phonetics.provinzkraut.de
+.. _`API`: https://phonetics.provinzkraut.de/api_doc
 .. _`PyPi`: https://pypi.org/project/cologne-phonetics/
 
 
@@ -67,28 +68,29 @@ Examples
   $ cologne_phonetics.py "urlaub uhrlaup"
   0751, 0751
 
-As you can see, similar sounding names produce the same result, with respect to the *right* pronunciation.
+As you can see, similar sounding names produce the same result, with respect to the *correct* pronunciation.
 
 .. code-block:: bash
 
   $ cologne_phonetics.py "peter peta"
   127, 12
 
-As you can see, this does not give the same result for each name because it may seem similar,
-but (when pronounced correctly) don't really *sound* the same.
+This does not give the same result for each word because they may *look* similar,
+but (when pronounced correctly) don't really *sound* alike.
 
 
-Try it
-======
+Try it / API
+============
 
-At you can `try out`_ this implementation or use its API.
+You can `try out`_ this implementation or use its `API`_.
 
 
 ============
 Installation
 ============
 
-cologne_phonetics is available on `PyPi`_ for Python 3.4+. So it can be installed it via pip:
+cologne_phonetics runs with Python 3.4+ or PyPy 3.5.
+It is available on `PyPi`_ and can be installed it via pip:
 
 .. code-block:: bash
 
@@ -114,10 +116,15 @@ encode(data, *concat=False*)
   If the input string is altered in any way before encoding, the tuple will
   contain the altered version.
 
+  .. code-block:: python
+
+    >>> cologne_phonetics.encode("bäteS")
+    >>> [('baetes', '128')]
+
   If ``concat=True`` is passed, words connected with hyphens will be treated as
   a single words.
 
-  Normally, the list should be ``len(result_list) == 1``. Only if the input string
+  Most of the time, the list will be ``len(result_list) == 1``. Only if the input string
   contains a space character or a hyphen it is splitted into substrings and each
   substring will be encoded seperately.
 
@@ -173,8 +180,7 @@ Word breaks and hyphens
 By default, words connected by hyphens, e.g. ``meier-lüdenscheid`` are seperated.
 So ``meier-lüdenscheid`` would become ``'67', '52682'``. If you
 want it to be treated as a single word, you can pass a ``concat=True``
-to the encode functions. In this case, a list with the seperated, encoded words
-will be returned.
+to the encode functions.
 
 While at first this doesn't seem to make a difference in the result, other than it being split
 into a list of strings, in some cases it can make a difference.
@@ -230,4 +236,10 @@ Changelog
 1.2.2
 =====
 
-- Another error in `compare`_ was found (and fixed); Compare didn't actually compare output. It compared input. This was due to bad tests and introduced in 1.2.0, wich the change that made `encode`_ always return a tuple as a result
+- Another error in `compare`_ was found (and fixed); Compare didn't actually compare output. It compared input. This was due to bad tests and introduced in 1.2.0, with the change that made `encode`_ always return a tuple as a result
+
+1.2.3
+=====
+
+- PyPy 3.5 is now officially supported
+- A bug was fixed thah would lead `encode`_ to sometimes an preprocessed rather than the altered string in the result tuple
