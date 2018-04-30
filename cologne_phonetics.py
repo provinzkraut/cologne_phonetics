@@ -153,7 +153,7 @@ def compare(*data, concat=False):
         return True
 
 
-if __name__ == "__main__":
+def cli():
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("data",
                         help="string to be encoded")
@@ -165,7 +165,7 @@ if __name__ == "__main__":
                         help="show detailed information")
     parser.add_argument("-p", "--pretty",
                        action="store_true",
-                       help="format output nicely")
+                       help="use in combination with --verbose to format output nicely")
     args = parser.parse_args()
     res = encode(args.data, concat=args.concat)
     if args.verbose:
@@ -174,3 +174,6 @@ if __name__ == "__main__":
     else:
         out = ', '.join([r[1] for r in res])
     print(out)
+
+if __name__ == "__main__": # pragma: no cover
+    cli()
