@@ -1,7 +1,8 @@
 import unittest
 from unittest import mock
 
-from cologne_phonetics import encode, compare
+import cologne_phonetics
+from cologne_phonetics import encode, compare, cli
 
 
 def enc_first(val, **kwargs):
@@ -161,6 +162,65 @@ class TestCompare(unittest.TestCase):
             compare("f")
         with self.assertRaises(ValueError):
             compare(["f"])
+
+
+class TestCLI(unittest.TestCase):
+
+    def setUp(self):
+        cologne_phonetics.print  = mock.MagicMock()
+        self.mock_print = cologne_phonetics.print
+
+    def tearDown(self):
+        cologne_phonetics.sys.argv = ['test_cologne_phonetics.py']
+
+    def add_args(self, *args, **kwargs):
+        args = list(args)
+        args.extend(['='.join((k,v)) for k,v in kwargs.items()])
+        cologne_phonetics.sys.argv.extend(args)
+
+    def compare_enc_call(self, mocked, data):
+        encoded = enc_first(data)
+        mocked.assert_called_with(encoded)
+
+    def test_encode(self):
+        self.add_args("foo")
+        cli()
+        self.mock_print.assert_called_with(enc_first("foo"))
+
+    @mock.patch("cologne_phonetics.encode")
+    def test_concat(self, mock_encode):
+        self.add_args("foo", "-c")
+        cli()
+        mock_encode.assert_called_with('foo', concat=True)
+
+    def test_verbose(self):
+        self.add_args("foo", "-v")
+        cli()
+        self.mock_print.assert_called_with("foo: 3")
+
+    def test_pretty(self):
+        self.add_args("foo-bar", "-vp")
+        cli()
+        self.mock_print.assert_called_with("foo: 3\nbar: 17")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
