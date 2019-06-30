@@ -27,7 +27,6 @@ Contents
 
   - `Introduction`_
   - `Examples`_
-  - `Try it / API`_
 - `Installation`_
 - `Usage`_
 
@@ -90,12 +89,6 @@ As you can see, similar sounding names produce the same result, with respect to 
 
 This does not give the same result for each word because they may *look* similar,
 but (when pronounced correctly) don't really *sound* alike.
-
-
-Try it / API
-============
-
-You can `try out`_ this implementation or use its `API`_.
 
 
 ============
