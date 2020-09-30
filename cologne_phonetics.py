@@ -6,14 +6,12 @@ algorithm similar to soundex but optimized for the german language
 
 Documentation can be found at https://github.com/provinzkraut/cologne_phonetics
 
-An online version and API are available at https://phonetics.provinzkraut.de
-
 A detailed explanation of the cologne phonetics can be found at:
 https://en.wikipedia.org/wiki/Cologne_phonetics
 """
 
 __author__ = "Janek Nouvertné"
-__version__ = "1.2.4"
+__version__ = "1.2.5"
 __license__ = "MIT"
 
 import sys
