@@ -204,24 +204,5 @@ class TestCLI(unittest.TestCase):
         self.mock_print.assert_called_with("foo: 3\nbar: 17")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     unittest.main()
