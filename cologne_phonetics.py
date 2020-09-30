@@ -18,7 +18,7 @@ __license__ = "MIT"
 
 import sys
 import re
-from collections import Iterable
+from collections.abc import Iterable
 from argparse import ArgumentParser, ArgumentTypeError
 
 
