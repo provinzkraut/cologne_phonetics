@@ -47,6 +47,7 @@ Contents
   - `1.2.1`_
   - `1.2.2`_
   - `1.2.3`_
+  - `1.2.4`_
 
 
 
@@ -248,4 +249,12 @@ Changelog
 =====
 
 - PyPy 3.5 is now officially supported
-- A bug was fixed thah would lead `encode`_ to sometimes an preprocessed rather than the altered string in the result tuple
+- A bug was fixed that would lead `encode`_ to sometimes an preprocessed rather than the altered string in the result tuple
+
+
+1.2.4
+=====
+
+- Drop support for Python 3.4 and 3.5
+- Add tests for Python 3.8 and 3.9
+- Remove deprecated `Iterable` import. See #1
