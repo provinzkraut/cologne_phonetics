@@ -16,22 +16,18 @@ __license__ = "MIT"
 
 import sys
 import re
+import unicodedata
 from collections.abc import Iterable
 from argparse import ArgumentParser, ArgumentTypeError
 
 
-RGX_SPECIAL_CHARS = re.compile(r"[äüößéèáàç]")
+RGX_SPECIAL_CHARS = re.compile(r"[äüöß]")
 
 RGX_SPECIAL_CHAR_REPLACEMENTS = [
   (re.compile(r"ä"), "ae"),
   (re.compile(r"ö"), "oe"),
   (re.compile(r"ü"), "ue"),
   (re.compile(r"ß"), "s"),
-  (re.compile(r"é"), "e"),
-  (re.compile(r"è"), "e"),
-  (re.compile(r"á"), "a"),
-  (re.compile(r"à"), "a"),
-  (re.compile(r"ç"), "c"),
 ]
 
 RGX_RULES = [
@@ -78,6 +74,14 @@ RGX_RULES = [
     ]
 
 
+def remove_diacritics(s):
+    # https://stackoverflow.com/a/518232
+    return ''.join(
+        c for c in unicodedata.normalize('NFD', s)
+        if unicodedata.category(c) != 'Mn'
+    )
+
+
 def encode(data, concat=False):
     """
     :param data str: Input to be encoded. Every whitespace character will be\
@@ -104,6 +108,7 @@ def encode(data, concat=False):
         s = s.lower()
         if RGX_SPECIAL_CHARS.search(s):
             s = _replace_by_rules(RGX_SPECIAL_CHAR_REPLACEMENTS, s)
+        s = remove_diacritics(s)
         o = s
         s = _replace_by_rules(RGX_RULES, s)
         return o, s
