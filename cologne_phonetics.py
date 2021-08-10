@@ -14,12 +14,10 @@ __author__ = "Janek Nouvertné"
 __version__ = "1.2.6"
 __license__ = "MIT"
 
-import sys
 import re
 import unicodedata
+from argparse import ArgumentParser
 from collections.abc import Iterable
-from argparse import ArgumentParser, ArgumentTypeError
-
 
 RGX_SPECIAL_CHARS = re.compile(r"[äüöß]")
 
