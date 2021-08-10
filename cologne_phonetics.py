@@ -82,14 +82,15 @@ def _replace_by_rules(rules: List[Tuple[Pattern[str], str]], s: str) -> str:
 
 def encode(data: str, concat: bool = False) -> List[Tuple[str, str]]:
     """
-    :param data: Input to be encoded. Every whitespace character will be
+    :param data: Input to be encoded. Whitespace characters will be
         interpreted as a wordbreak
     :param concat: The intended behaviour of the cologne-phonetics
         is to ignore special characters. This leads to concatenation for strings
         with hyphens. If ``concat`` is set to ``True``, hyphenated string will be
         treated as separate words
 
-    :return: Return a list of tuples containing input / encoded substring pairs
+    :return: Return a list of tuples containing sanitised input / encoded substring
+        pairs
 
     :note: Contrary to many other implementations, in the final pass only
         repeated **digits** are removed, not repeated **numbers**. Resulting e.g.
@@ -122,7 +123,7 @@ def compare(*data: str, concat: bool = False) -> bool:
     :raises: ValueError if only one input string is given
     """
 
-    if not isinstance(data[0], str) and (data[0], Iterable) and len(data) == 1:
+    if not isinstance(data[0], str) and isinstance(data[0], Iterable) and len(data) == 1:
         data = data[0]
 
     if len(data) == 1:
