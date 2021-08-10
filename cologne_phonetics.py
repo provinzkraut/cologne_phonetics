@@ -74,6 +74,22 @@ def _remove_diacritics(s: str) -> str:
     )
 
 
+def _replace_by_rules(rules: List[Tuple[Pattern[str], str]], s: str) -> str:
+    for rule in rules:
+        s = rule[0].sub(rule[1], s)
+    return s
+
+
+def _encode(data: str) -> Tuple[str, str]:
+    data = data.lower()
+    if RGX_SPECIAL_CHARS.search(data):
+        data = _replace_by_rules(RGX_SPECIAL_CHAR_REPLACEMENTS, data)
+    o = data
+    data = _remove_diacritics(data)
+    data = _replace_by_rules(RGX_RULES, data)
+    return o, data
+
+
 def encode(data: str, concat: bool = False) -> List[Tuple[str, str]]:
     """
     :param data: Input to be encoded. Every whitespace character will be\
