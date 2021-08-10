@@ -24,61 +24,54 @@ from argparse import ArgumentParser, ArgumentTypeError
 RGX_SPECIAL_CHARS = re.compile(r"[äüöß]")
 
 RGX_SPECIAL_CHAR_REPLACEMENTS = [
-  (re.compile(r"ä"), "ae"),
-  (re.compile(r"ö"), "oe"),
-  (re.compile(r"ü"), "ue"),
-  (re.compile(r"ß"), "s"),
+    (re.compile(r"ä"), "ae"),
+    (re.compile(r"ö"), "oe"),
+    (re.compile(r"ü"), "ue"),
+    (re.compile(r"ß"), "s"),
 ]
 
 RGX_RULES = [
-        # ignore special characters that have not been replaced at this point
-        (re.compile(r"[^a-z]"),         ''),
-
-        ## d,t replacements
-        # not before c,s,z
-        (re.compile(r"[dt](?![csz])"), '2'),
-        # before c,s,z
-        (re.compile(r"[dt](?=[csz])"), '8'),
-
-        ### x replacements
-        # not after c,k,q
-        (re.compile(r"(?<![ckq])x"),   '48'),
-        # after c,k,q. insert new x for later comparison. will be removed later
-        (re.compile(r"(?<=[ckq])x"),   'x8'),
-
-
-        ## c replacements
-        # at the start before a,h,k,l,o,q,r,u,x
-        # | not after s,z before a,h,k,o,q,u,x
-        (re.compile(r"^c(?=[ahkloqrux])|(?<![sz])c(?=[ahkoqux])"),   "4"),
-        # not before a,h,k,o,q,u,x
-        # | not before s,z
-        # | at the start, not before a,h,k,l,o,q,r,u,x
-        (re.compile(r"c(?![ahkoqux])|(?<=[sz])c|^c(?![ahkloqrux])"), "8"),
-
-        # p not before h
-        (re.compile(r"p(?!h)|b"),       '1'),
-        # p before h and f,v,w
-        (re.compile(r"p(?=h)|[fvw]"),   '3'),
-        (re.compile(r"[hx]"),            ""),
-        (re.compile(r"[aeijouy]"),      '0'),
-        (re.compile(r"[gkq]"),          '4'),
-        (re.compile(r"l"),              '5'),
-        (re.compile(r"[mn]"),           '6'),
-        (re.compile(r"r"),              '7'),
-        (re.compile(r"[sz]"),           '8'),
-
-        # repeating digits
-        (re.compile(r"(\d)(?=\1)"),     ''),
-        (re.compile(r"\B0"),            '')
-    ]
+    # ignore special characters that have not been replaced at this point
+    (re.compile(r"[^a-z]"), ""),
+    ## d,t replacements
+    # not before c,s,z
+    (re.compile(r"[dt](?![csz])"), "2"),
+    # before c,s,z
+    (re.compile(r"[dt](?=[csz])"), "8"),
+    ### x replacements
+    # not after c,k,q
+    (re.compile(r"(?<![ckq])x"), "48"),
+    # after c,k,q. insert new x for later comparison. will be removed later
+    (re.compile(r"(?<=[ckq])x"), "x8"),
+    ## c replacements
+    # at the start before a,h,k,l,o,q,r,u,x
+    # | not after s,z before a,h,k,o,q,u,x
+    (re.compile(r"^c(?=[ahkloqrux])|(?<![sz])c(?=[ahkoqux])"), "4"),
+    # not before a,h,k,o,q,u,x
+    # | not before s,z
+    # | at the start, not before a,h,k,l,o,q,r,u,x
+    (re.compile(r"c(?![ahkoqux])|(?<=[sz])c|^c(?![ahkloqrux])"), "8"),
+    # p not before h
+    (re.compile(r"p(?!h)|b"), "1"),
+    # p before h and f,v,w
+    (re.compile(r"p(?=h)|[fvw]"), "3"),
+    (re.compile(r"[hx]"), ""),
+    (re.compile(r"[aeijouy]"), "0"),
+    (re.compile(r"[gkq]"), "4"),
+    (re.compile(r"l"), "5"),
+    (re.compile(r"[mn]"), "6"),
+    (re.compile(r"r"), "7"),
+    (re.compile(r"[sz]"), "8"),
+    # repeating digits
+    (re.compile(r"(\d)(?=\1)"), ""),
+    (re.compile(r"\B0"), ""),
+]
 
 
 def remove_diacritics(s):
     # https://stackoverflow.com/a/518232
-    return ''.join(
-        c for c in unicodedata.normalize('NFD', s)
-        if unicodedata.category(c) != 'Mn'
+    return "".join(
+        c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn"
     )
 
 
@@ -112,7 +105,6 @@ def encode(data, concat=False):
         o = s
         s = _replace_by_rules(RGX_RULES, s)
         return o, s
-
 
     if not concat:
         data = data.replace("-", " ")
@@ -158,25 +150,31 @@ def compare(*data, concat=False):
 
 def cli():
     parser = ArgumentParser(description=__doc__)
-    parser.add_argument("data",
-                        help="string to be encoded")
-    parser.add_argument("-c", "--concat",
-                        action="store_true",
-                        help="treat words connected by hyphens as seperate words")
-    parser.add_argument("-v", "--verbose",
-                        action="store_true",
-                        help="show detailed information")
-    parser.add_argument("-p", "--pretty",
-                       action="store_true",
-                       help="use in combination with --verbose to format output nicely")
+    parser.add_argument("data", help="string to be encoded")
+    parser.add_argument(
+        "-c",
+        "--concat",
+        action="store_true",
+        help="treat words connected by hyphens as seperate words",
+    )
+    parser.add_argument(
+        "-v", "--verbose", action="store_true", help="show detailed information"
+    )
+    parser.add_argument(
+        "-p",
+        "--pretty",
+        action="store_true",
+        help="use in combination with --verbose to format output nicely",
+    )
     args = parser.parse_args()
     res = encode(args.data, concat=args.concat)
     if args.verbose:
-        sep = '\n' if args.pretty else ', '
-        out = sep.join([r[0]+": "+r[1] for r in res])
+        sep = "\n" if args.pretty else ", "
+        out = sep.join([r[0] + ": " + r[1] for r in res])
     else:
-        out = ', '.join([r[1] for r in res])
+        out = ", ".join([r[1] for r in res])
     print(out)
 
-if __name__ == "__main__": # pragma: no cover
+
+if __name__ == "__main__":  # pragma: no cover
     cli()
