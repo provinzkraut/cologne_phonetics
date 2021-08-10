@@ -13,6 +13,7 @@ test:
 
 
 release: test
+	poetry build
 	poetry publish
 	git add -A
 	git tag $(VERSION)
