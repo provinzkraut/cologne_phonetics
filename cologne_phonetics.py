@@ -14,10 +14,11 @@ __author__ = "Janek Nouvertné"
 __version__ = "1.2.6"
 __license__ = "MIT"
 
+import sys
 import re
 import unicodedata
 from argparse import ArgumentParser
-from collections.abc import Iterable
+from typing import Iterable, List, Tuple, Pattern
 
 RGX_SPECIAL_CHARS = re.compile(r"[äüöß]")
 
@@ -66,23 +67,22 @@ RGX_RULES = [
 ]
 
 
-def remove_diacritics(s):
+def remove_diacritics(s: str) -> str:
     # https://stackoverflow.com/a/518232
     return "".join(
         c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn"
     )
 
 
-def encode(data, concat=False):
+def encode(data: str, concat: bool = False) -> List[Tuple[str, str]]:
     """
-    :param data str: Input to be encoded. Every whitespace character will be\
+    :param data: Input to be encoded. Every whitespace character will be\
     interpreted as a wordbreak.
-    :param concat bool: The intended behaviour of the cologne-phonetics\
+    :param concat: The intended behaviour of the cologne-phonetics\
     is to ignore special characters. This leads to concatenation for strings\
     with hyphens. If :attr:`concatenate` is set to True` strings connected by\
     hyphens will be treated as two single strings.
 
-    :rtype: dict
     :return: Return a dict of input / encoded substring pairs
 
     :note: Contrary to many other implementations, in the final pass only\
@@ -90,12 +90,12 @@ def encode(data, concat=False):
     in ``xx`` being encoded as `4848` and not `48``.
     """
 
-    def _replace_by_rules(rules, s):
+    def _replace_by_rules(rules: List[Tuple[Pattern[str], str]], s: str) -> str:
         for rule in rules:
             s = rule[0].sub(rule[1], s)
         return s
 
-    def _enc(s):
+    def _enc(s: str) -> Tuple[str, str]:
         s = s.lower()
         if RGX_SPECIAL_CHARS.search(s):
             s = _replace_by_rules(RGX_SPECIAL_CHAR_REPLACEMENTS, s)
@@ -107,9 +107,8 @@ def encode(data, concat=False):
     if not concat:
         data = data.replace("-", " ")
     if " " in data:
-        data = data.split(" ")
         result = []
-        for i in data:
+        for i in data.split(" "):
             result.append(_enc(i))
     else:
         result = [_enc(data)]
@@ -117,12 +116,12 @@ def encode(data, concat=False):
     return result
 
 
-def compare(*data, concat=False):
+def compare(*data: str, concat: bool = False) -> bool:
     """
     Encode and compare strings.
 
-    :param *data: Data to compare. Either at last 2 positional arguments or an iterable
-    :param concat bool: Passed to `encode()`
+    :param data: Data to compare. Either at last 2 positional arguments or an iterable
+    :param concat: Passed to `encode()`
 
     :returns: True or False
 
@@ -146,7 +145,7 @@ def compare(*data, concat=False):
         return True
 
 
-def cli():
+def cli() -> None:
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("data", help="string to be encoded")
     parser.add_argument(
