@@ -80,16 +80,6 @@ def _replace_by_rules(rules: List[Tuple[Pattern[str], str]], s: str) -> str:
     return s
 
 
-def _encode(data: str) -> Tuple[str, str]:
-    data = data.lower()
-    if RGX_SPECIAL_CHARS.search(data):
-        data = _replace_by_rules(RGX_SPECIAL_CHAR_REPLACEMENTS, data)
-    o = data
-    data = _remove_diacritics(data)
-    data = _replace_by_rules(RGX_RULES, data)
-    return o, data
-
-
 def encode(data: str, concat: bool = False) -> List[Tuple[str, str]]:
     """
     :param data: Input to be encoded. Every whitespace character will be
@@ -108,14 +98,16 @@ def encode(data: str, concat: bool = False) -> List[Tuple[str, str]]:
 
     if not concat:
         data = data.replace("-", " ")
-    if " " in data:
-        result = []
-        for i in data.split(" "):
-            result.append(_encode(i))
-    else:
-        result = [_encode(data)]
+    data = data.lower()
 
-    return result
+    words_encoded = []
+    for word in data.split(" "):
+        word_clean = _remove_diacritics(
+            _replace_by_rules(RGX_SPECIAL_CHAR_REPLACEMENTS, word)
+        )
+        word_encoded = _replace_by_rules(RGX_RULES, word_clean)
+        words_encoded.append((word_clean, word_encoded))
+    return words_encoded
 
 
 def compare(*data: str, concat: bool = False) -> bool:
