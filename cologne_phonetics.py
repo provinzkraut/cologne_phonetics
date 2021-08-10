@@ -32,17 +32,17 @@ RGX_SPECIAL_CHAR_REPLACEMENTS = [
 RGX_RULES = [
     # ignore special characters that have not been replaced at this point
     (re.compile(r"[^a-z]"), ""),
-    ## d,t replacements
+    # d,t replacements
     # not before c,s,z
     (re.compile(r"[dt](?![csz])"), "2"),
     # before c,s,z
     (re.compile(r"[dt](?=[csz])"), "8"),
-    ### x replacements
+    # x replacements
     # not after c,k,q
     (re.compile(r"(?<![ckq])x"), "48"),
     # after c,k,q. insert new x for later comparison. will be removed later
     (re.compile(r"(?<=[ckq])x"), "x8"),
-    ## c replacements
+    # c replacements
     # at the start before a,h,k,l,o,q,r,u,x
     # | not after s,z before a,h,k,o,q,u,x
     (re.compile(r"^c(?=[ahkloqrux])|(?<![sz])c(?=[ahkoqux])"), "4"),
@@ -92,42 +92,28 @@ def _encode(data: str) -> Tuple[str, str]:
 
 def encode(data: str, concat: bool = False) -> List[Tuple[str, str]]:
     """
-    :param data: Input to be encoded. Every whitespace character will be\
-    interpreted as a wordbreak.
-    :param concat: The intended behaviour of the cologne-phonetics\
-    is to ignore special characters. This leads to concatenation for strings\
-    with hyphens. If :attr:`concatenate` is set to True` strings connected by\
-    hyphens will be treated as two single strings.
+    :param data: Input to be encoded. Every whitespace character will be
+        interpreted as a wordbreak
+    :param concat: The intended behaviour of the cologne-phonetics
+        is to ignore special characters. This leads to concatenation for strings
+        with hyphens. If ``concat`` is set to ``True``, hyphenated string will be
+        treated as separate words
 
-    :return: Return a dict of input / encoded substring pairs
+    :return: Return a list of tuples containing input / encoded substring pairs
 
-    :note: Contrary to many other implementations, in the final pass only\
-    repeated **digits** are removed, not repeated **numbers**. Resulting e.g.\
-    in ``xx`` being encoded as `4848` and not `48``.
+    :note: Contrary to many other implementations, in the final pass only
+        repeated **digits** are removed, not repeated **numbers**. Resulting e.g.
+        in ``xx`` being encoded as `4848` and not `48``
     """
-
-    def _replace_by_rules(rules: List[Tuple[Pattern[str], str]], s: str) -> str:
-        for rule in rules:
-            s = rule[0].sub(rule[1], s)
-        return s
-
-    def _enc(s: str) -> Tuple[str, str]:
-        s = s.lower()
-        if RGX_SPECIAL_CHARS.search(s):
-            s = _replace_by_rules(RGX_SPECIAL_CHAR_REPLACEMENTS, s)
-        s = remove_diacritics(s)
-        o = s
-        s = _replace_by_rules(RGX_RULES, s)
-        return o, s
 
     if not concat:
         data = data.replace("-", " ")
     if " " in data:
         result = []
         for i in data.split(" "):
-            result.append(_enc(i))
+            result.append(_encode(i))
     else:
-        result = [_enc(data)]
+        result = [_encode(data)]
 
     return result
 
@@ -137,11 +123,11 @@ def compare(*data: str, concat: bool = False) -> bool:
     Encode and compare strings.
 
     :param data: Data to compare. Either at last 2 positional arguments or an iterable
-    :param concat: Passed to `encode()`
+    :param concat: Passed to ``encode()``
 
-    :returns: True or False
-
-    :raises: ValueError if only one input string is given.
+    :returns: A boolean, indicating whether or not all passed data is equal after
+        encoding
+    :raises: ValueError if only one input string is given
     """
 
     if not isinstance(data[0], str) and (data[0], Iterable) and len(data) == 1:
@@ -168,7 +154,7 @@ def cli() -> None:
         "-c",
         "--concat",
         action="store_true",
-        help="treat words connected by hyphens as seperate words",
+        help="treat words connected by hyphens as separate words",
     )
     parser.add_argument(
         "-v", "--verbose", action="store_true", help="show detailed information"
