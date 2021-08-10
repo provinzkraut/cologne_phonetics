@@ -48,6 +48,7 @@ Contents
   - `1.2.2`_
   - `1.2.3`_
   - `1.2.4`_
+  - `1.2.6`_
 
 
 
@@ -63,7 +64,7 @@ It involves three steps:
 
 - Generate a code by representing every letter from left to right with a digit, according to a conversion table
 - Remove double digits
-- Remove every occurence of '0', except as a leading digit
+- Remove every occurrence of '0', except as a leading digit
 
 The module itself is quite simple and consists only of the `encode`_ and `compare`_  functions
 and a simple command line interface.
@@ -257,4 +258,13 @@ Changelog
 
 - Drop support for Python 3.4 and 3.5
 - Add tests for Python 3.8 and 3.9
-- Remove deprecated `Iterable` import. See #1
+- Remove deprecated ``Iterable`` import. See #1
+
+
+1.3.0
+=====
+
+- Add more robust replacement of diacritic using ``unicodedata`` (provided by `Tobias Bengfort <https://github.com/xi>`_ )
+- Add type hints
+- Fix issue where ``concat`` parameter of `compare`_ wasn't passed to `encode`_
+
