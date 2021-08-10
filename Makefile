@@ -1,4 +1,4 @@
-VERSION = $(shell python3 setup.py --version)
+VERSION = $(shell poetry version -s)
 
 .PHONY: test release coverage
 
@@ -13,9 +13,8 @@ test:
 
 
 release: test
-	python setup.py sdist bdist_wheel
+	poetry publish
 	git add -A
 	git tag $(VERSION)
 	git push origin HEAD
 	git push origin tag $(VERSION)
-	twine upload dist/*
