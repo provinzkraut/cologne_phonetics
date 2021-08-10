@@ -113,7 +113,8 @@ class TestEncode(unittest.TestCase):
             "é": "e",
             "è": "e",
             "ß": "s",
-            "ç": "c"
+            "ç": "c",
+            "š": "s",
         }
         for char, repl in special_chars.items():
             self.assertEqual(enc_first(char), enc_first(repl))
