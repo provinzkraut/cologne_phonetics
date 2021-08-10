@@ -67,7 +67,7 @@ RGX_RULES = [
 ]
 
 
-def remove_diacritics(s: str) -> str:
+def _remove_diacritics(s: str) -> str:
     # https://stackoverflow.com/a/518232
     return "".join(
         c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn"
