@@ -11,7 +11,7 @@ https://en.wikipedia.org/wiki/Cologne_phonetics
 """
 
 __author__ = "Janek Nouvertné"
-__version__ = "1.2.6"
+__version__ = "1.3.0"
 __license__ = "MIT"
 
 import sys
@@ -136,7 +136,7 @@ def compare(*data: str, concat: bool = False) -> bool:
 
     last = None
     for s in data:
-        res = [r[1] for r in encode(s)]
+        res = [r[1] for r in encode(s, concat=concat)]
         if last and res != last:
             return False
         else:
