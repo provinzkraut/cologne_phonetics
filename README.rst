@@ -275,3 +275,4 @@ Changelog
 
 - Run tests against Python 3.10
 - Add missing Readme to pyproject.toml
+- Drop Python 3.6 support
