@@ -49,6 +49,7 @@ Contents
   - `1.2.3`_
   - `1.2.4`_
   - `1.3.0`_
+  - `1.3.1`_
 
 
 
@@ -268,3 +269,9 @@ Changelog
 - Add type hints
 - Fix issue where ``concat`` parameter of `compare`_ wasn't passed to `encode`_
 
+
+1.3.1
+=====
+
+- Run tests against Python 3.10
+- Add missing Readme to pyproject.toml
