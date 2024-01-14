@@ -1,6 +1,3 @@
-.. _release: https://raw.githubusercontent.com/provinzkraut/cologne_phonetics/1.2.2/cologne_phonetics.py
-.. _`try out`: https://phonetics.provinzkraut.de
-.. _`API`: https://phonetics.provinzkraut.de/api_doc
 .. _`PyPi`: https://pypi.org/project/cologne-phonetics/
 
 
@@ -8,13 +5,6 @@
 Cologne-phonetics
 =================
 
-.. image:: https://travis-ci.org/provinzkraut/cologne_phonetics.svg?branch=master
-    :target: https://travis-ci.org/provinzkraut/cologne_phonetics
-    :alt: cologne_phonetics build
-
-.. image:: https://coveralls.io/repos/github/provinzkraut/cologne_phonetics/badge.svg?branch=master
-    :target: https://coveralls.io/github/provinzkraut/cologne_phonetics?branch=master
-    :alt: cologne_phonetics coverage
 
 .. image:: https://img.shields.io/pypi/pyversions/cologne-phonetics.svg
     :alt: PyPI version
@@ -104,8 +94,6 @@ It is available on `PyPi`_ and can be installed it via pip:
 .. code-block:: bash
 
   pip install cologne_phonetics
-
-Alternatively you can download the latest release_ directly.
 
 
 =====
