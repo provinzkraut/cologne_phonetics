@@ -18,12 +18,20 @@ python = ">=3.8"
 
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.12.1"
-mypy = "^1.8.0"
+pre-commit = "<3.6.0"
 
 
 [tool.mypy]
 strict = true
+exclude = ["test.py"]
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py38"
+select = ["F", "E", "W", "I", "UP", "TCH", "FA"]
+include = ["cologne_phonetics.py"]
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

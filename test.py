@@ -2,7 +2,7 @@ import unittest
 from unittest import mock
 
 import cologne_phonetics
-from cologne_phonetics import encode, compare, cli
+from cologne_phonetics import cli, compare, encode
 
 
 def enc_first(val, **kwargs):
