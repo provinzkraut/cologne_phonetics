@@ -40,6 +40,7 @@ Contents
   - `1.2.4`_
   - `1.3.0`_
   - `1.3.1`_
+  - `2.0.0`_
 
 
 
@@ -264,3 +265,10 @@ Changelog
 - Run tests against Python 3.10
 - Add missing Readme to pyproject.toml
 - Drop Python 3.6 support
+
+
+2.0.0
+=====
+
+- Drop Python 3.7 support
+- Test against Python 3.11 and 3.12

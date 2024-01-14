@@ -11,7 +11,7 @@ https://en.wikipedia.org/wiki/Cologne_phonetics
 from __future__ import annotations
 
 __author__ = "Janek Nouvertné"
-__version__ = "1.3.0"
+__version__ = "2.0.0"
 __license__ = "MIT"
 
 import re
