@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Cologne_phonetics is a Python implementation of the cologne-phonetics, a phonetic
 algorithm similar to soundex but optimized for the german language
@@ -9,16 +8,17 @@ Documentation can be found at https://github.com/provinzkraut/cologne_phonetics
 A detailed explanation of the cologne phonetics can be found at:
 https://en.wikipedia.org/wiki/Cologne_phonetics
 """
+from __future__ import annotations
 
 __author__ = "Janek Nouvertné"
 __version__ = "1.3.0"
 __license__ = "MIT"
 
-import sys
 import re
+import sys
 import unicodedata
 from argparse import ArgumentParser
-from typing import Iterable, List, Tuple, Pattern
+from typing import Iterable, Pattern
 
 RGX_SPECIAL_CHARS = re.compile(r"[äüöß]")
 
@@ -74,13 +74,13 @@ def _remove_diacritics(s: str) -> str:
     )
 
 
-def _replace_by_rules(rules: List[Tuple[Pattern[str], str]], s: str) -> str:
+def _replace_by_rules(rules: list[tuple[Pattern[str], str]], s: str) -> str:
     for rule in rules:
         s = rule[0].sub(rule[1], s)
     return s
 
 
-def encode(data: str, concat: bool = False) -> List[Tuple[str, str]]:
+def encode(data: str, concat: bool = False) -> list[tuple[str, str]]:
     """
     :param data: Input to be encoded. Whitespace characters will be
         interpreted as a wordbreak
@@ -118,8 +118,7 @@ def compare(*data: str, concat: bool = False) -> bool:
     :param data: Data to compare. Either at last 2 positional arguments or an iterable
     :param concat: Passed to ``encode()``
 
-    :returns: A boolean, indicating whether or not all passed data is equal after
-        encoding
+    :returns: A boolean, indicating whether all passed data is equal after encoding
     :raises: ValueError if only one input string is given
     """
 
@@ -144,7 +143,7 @@ def compare(*data: str, concat: bool = False) -> bool:
         return True
 
 
-def cli() -> None:
+def cli(args: list[str] | None = None) -> None:
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("data", help="string to be encoded")
     parser.add_argument(
@@ -162,10 +161,10 @@ def cli() -> None:
         action="store_true",
         help="use in combination with --verbose to format output nicely",
     )
-    args = parser.parse_args()
-    res = encode(args.data, concat=args.concat)
-    if args.verbose:
-        sep = "\n" if args.pretty else ", "
+    parsed_args = parser.parse_args(args)
+    res = encode(parsed_args.data, concat=parsed_args.concat)
+    if parsed_args.verbose:
+        sep = "\n" if parsed_args.pretty else ", "
         out = sep.join([r[0] + ": " + r[1] for r in res])
     else:
         out = ", ".join([r[1] for r in res])
@@ -173,4 +172,4 @@ def cli() -> None:
 
 
 if __name__ == "__main__":  # pragma: no cover
-    cli()
+    cli(sys.argv)
