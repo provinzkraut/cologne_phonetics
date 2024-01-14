@@ -6,19 +6,20 @@ authors = ["Janek Nouvertné"]
 license = "MIT"
 readme = "README.rst"
 classifiers = [
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10"
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12"
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.7"
+python = ">=3.8"
 
 
 [tool.poetry.group.dev.dependencies]
-black = "^21.12-beta.0"
-mypy = "^0.920"
+black = "^23.12.1"
+mypy = "^1.8.0"
 
 
 [tool.mypy]

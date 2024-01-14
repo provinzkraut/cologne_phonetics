@@ -10,17 +10,16 @@ def enc_first(val, **kwargs):
 
 
 class TestEncode(unittest.TestCase):
-
     def multiple_before(self, char=None, before=None, exp=None):
         for b in before:
-            self.assertEqual(encode(char+b), exp)
+            self.assertEqual(encode(char + b), exp)
 
     def multiple_after(self, char=None, after=None, exp=None):
         for b in after:
-            self.assertEqual(enc_first(b+char), exp)
+            self.assertEqual(enc_first(b + char), exp)
 
     def fuzz(self, char, exp, alt_exp="None", fuzzer="h"):
-        for stmt in (char, fuzzer+char, char+fuzzer):
+        for stmt in (char, fuzzer + char, char + fuzzer):
             try:
                 self.assertEqual(enc_first(stmt), exp)
             except AssertionError as e:
@@ -28,9 +27,8 @@ class TestEncode(unittest.TestCase):
                     raise e
                 self.assertEqual(enc_first(stmt), alt_exp)
 
-
     def test_aeijouy(self):
-        chars = ["a","ä","á","à","e","é","è","i","j","o","ö","u","ü","y"]
+        chars = ["a", "ä", "á", "à", "e", "é", "è", "i", "j", "o", "ö", "u", "ü", "y"]
         for c in chars:
             self.fuzz(c, "0")
 
@@ -123,9 +121,9 @@ class TestEncode(unittest.TestCase):
         self.assertEqual(enc_first("ah"), enc_first("ahø"))
 
     def test_concatenation(self):
-        self.assertTrue(encode("a-a")==encode("a a"))
-        self.assertEqual(encode("a-a", concat=True), [("a-a", '0')])
-        self.assertEqual(encode("a a", concat=True), [('a', '0'), ('a', '0')])
+        self.assertTrue(encode("a-a") == encode("a a"))
+        self.assertEqual(encode("a-a", concat=True), [("a-a", "0")])
+        self.assertEqual(encode("a a", concat=True), [("a", "0"), ("a", "0")])
 
     def test_case_insensitive(self):
         self.assertEqual(encode("foo"), encode("FoO"))
@@ -135,7 +133,6 @@ class TestEncode(unittest.TestCase):
 
 
 class TestCompare(unittest.TestCase):
-
     def test_input(self):
         self.assertEqual(compare(["a", "b", "c"]), compare("a", "b", "c"))
 
@@ -166,17 +163,16 @@ class TestCompare(unittest.TestCase):
 
 
 class TestCLI(unittest.TestCase):
-
     def setUp(self):
-        cologne_phonetics.print  = mock.MagicMock()
+        cologne_phonetics.print = mock.MagicMock()
         self.mock_print = cologne_phonetics.print
 
     def tearDown(self):
-        cologne_phonetics.sys.argv = ['test_cologne_phonetics.py']
+        cologne_phonetics.sys.argv = ["test_cologne_phonetics.py"]
 
     def add_args(self, *args, **kwargs):
         args = list(args)
-        args.extend(['='.join((k,v)) for k,v in kwargs.items()])
+        args.extend(["=".join((k, v)) for k, v in kwargs.items()])
         cologne_phonetics.sys.argv.extend(args)
 
     def compare_enc_call(self, mocked, data):
@@ -192,7 +188,7 @@ class TestCLI(unittest.TestCase):
     def test_concat(self, mock_encode):
         self.add_args("foo", "-c")
         cli()
-        mock_encode.assert_called_with('foo', concat=True)
+        mock_encode.assert_called_with("foo", concat=True)
 
     def test_verbose(self):
         self.add_args("foo", "-v")

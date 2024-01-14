@@ -123,7 +123,11 @@ def compare(*data: str, concat: bool = False) -> bool:
     :raises: ValueError if only one input string is given
     """
 
-    if not isinstance(data[0], str) and isinstance(data[0], Iterable) and len(data) == 1:
+    if (
+        not isinstance(data[0], str)
+        and isinstance(data[0], Iterable)
+        and len(data) == 1
+    ):
         data = data[0]
 
     if len(data) == 1:
