@@ -15,6 +15,7 @@ __version__ = "1.3.0"
 __license__ = "MIT"
 
 import re
+import sys
 import unicodedata
 from argparse import ArgumentParser
 from typing import Iterable, Pattern
@@ -142,7 +143,7 @@ def compare(*data: str, concat: bool = False) -> bool:
         return True
 
 
-def cli() -> None:
+def cli(args: list[str] | None = None) -> None:
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("data", help="string to be encoded")
     parser.add_argument(
@@ -160,10 +161,10 @@ def cli() -> None:
         action="store_true",
         help="use in combination with --verbose to format output nicely",
     )
-    args = parser.parse_args()
-    res = encode(args.data, concat=args.concat)
-    if args.verbose:
-        sep = "\n" if args.pretty else ", "
+    parsed_args = parser.parse_args(args)
+    res = encode(parsed_args.data, concat=parsed_args.concat)
+    if parsed_args.verbose:
+        sep = "\n" if parsed_args.pretty else ", "
         out = sep.join([r[0] + ": " + r[1] for r in res])
     else:
         out = ", ".join([r[1] for r in res])
@@ -171,4 +172,4 @@ def cli() -> None:
 
 
 if __name__ == "__main__":  # pragma: no cover
-    cli()
+    cli(sys.argv)

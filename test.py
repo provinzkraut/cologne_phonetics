@@ -170,34 +170,25 @@ class TestCLI(unittest.TestCase):
     def tearDown(self):
         cologne_phonetics.sys.argv = ["test_cologne_phonetics.py"]
 
-    def add_args(self, *args, **kwargs):
-        args = list(args)
-        args.extend(["=".join((k, v)) for k, v in kwargs.items()])
-        cologne_phonetics.sys.argv.extend(args)
-
     def compare_enc_call(self, mocked, data):
         encoded = enc_first(data)
         mocked.assert_called_with(encoded)
 
     def test_encode(self):
-        self.add_args("foo")
-        cli()
+        cli(["foo"])
         self.mock_print.assert_called_with(enc_first("foo"))
 
     @mock.patch("cologne_phonetics.encode")
     def test_concat(self, mock_encode):
-        self.add_args("foo", "-c")
-        cli()
+        cli(["foo", "-c"])
         mock_encode.assert_called_with("foo", concat=True)
 
     def test_verbose(self):
-        self.add_args("foo", "-v")
-        cli()
+        cli(["foo", "-v"])
         self.mock_print.assert_called_with("foo: 3")
 
     def test_pretty(self):
-        self.add_args("foo-bar", "-vp")
-        cli()
+        cli(["foo-bar", "-vp"])
         self.mock_print.assert_called_with("foo: 3\nbar: 17")
 
 
